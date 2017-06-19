@@ -1,15 +1,35 @@
 
-#set -g default-command "login-shell"
+######################
+# General Config
 
 # tmux display things in 256 colors
 set -g default-terminal "tmux-256color-italic"
 #  enable terminal compability
 set-option -ga terminal-overrides ",tmux-256color-italic:Tc"
 
+# set scroll history
 set -g history-limit 20000
 
-# automatically renumber tmux windows
+# Automatically renumber window numbers on closing a pane (tmux >= 1.7).
 set -g renumber-windows on
+
+# connected to the *session*, constrain window size to the maximum size of any
+# client connected to *that window*. Much more reasonable.
+setw -g aggressive-resize on
+
+# Start from 1
+set -g base-index 1
+setw -g pane-base-index 1
+
+# Window titles
+set-option -g set-titles on
+set-option -g set-titles-string "#T - #W"
+
+######################
+# Key Bindings
+
+# make delay shorter
+set -sg escape-time 0
 
 # unbind default prefix and set it to Ctrl+a
 unbind C-b
@@ -17,56 +37,38 @@ set -g prefix C-a
 bind C-a send-prefix
 bind-key a send-prefix
 
-# Activity Monitoring
-setw -g monitor-activity off
-set -g visual-activity off
+# reload config file
+bind r source-file ~/.tmux.conf \; display "Config Reloaded!"
 
-# Rather than constraining window size to the maximum size of any client
-# connected to the *session*, constrain window size to the maximum size of any
-# client connected to *that window*. Much more reasonable.
-setw -g aggressive-resize on
+# Open new/split panes with the path of the current pane.
+unbind c
+bind c new-window -c '#{pane_current_path}'
+unbind %
+bind % split-window -h -c '#{pane_current_path}'
+unbind '"'
+bind '"' split-window -v -c '#{pane_current_path}'
 
-# make delay shorter
-set -sg escape-time 0
+# split window and fix path for tmux 1.9
+bind \ split-window -h -c "#{pane_current_path}"
+bind | split-window -h -c "#{pane_current_path}"
+bind - split-window -v -c "#{pane_current_path}"
+bind _ split-window -v -c "#{pane_current_path}" -p 25
+
+# synchronize all panes in a window
+bind y setw synchronize-panes
 
 # tile all windows
 unbind =
 bind = select-layout tiled
 
-# cycle through panes
-# unbind C-a
-# unbind o # this is the default key for cycling panes
-# bind ^A select-pane -t:.+
-
-# make window/pane index start with 1
-set -g base-index 1
-setw -g pane-base-index 1
-
-set-option -g set-titles on
-set-option -g set-titles-string "#T - #W"
-# set-window-option -g automatic-rename on
-
-######################
-#### Key Bindings ####
-######################
-
-# reload config file
-bind r source-file ~/.tmux.conf \; display "Config Reloaded!"
-
-# quickly open a new window
-bind N new-window
-
-# split window and fix path for tmux 1.9
-bind \ split-window -h -c "#{pane_current_path}"
-bind - split-window -v -c "#{pane_current_path}"
-
-# synchronize all panes in a window
-bind y setw synchronize-panes
-
 # pane movement shortcuts
+unbind h
 bind h select-pane -L
+unbind j
 bind j select-pane -D
+unbind k
 bind k select-pane -U
+unbind l
 bind l select-pane -R
 
 bind -r C-h select-window -t :-
@@ -78,8 +80,32 @@ bind -r J resize-pane -D 10
 bind -r K resize-pane -U 10
 bind -r L resize-pane -R 10
 
+bind -r Left resize-pane -L 10
+bind -r Down resize-pane -D 10
+bind -r Up resize-pane -U 10
+bind -r Right resize-pane -R 1
+
+# Rename window
+bind-key < run -b 'tmux rename-window "`basename \"#{pane_current_path}\"`"'
+
+######################
+# Mouse and copy mode support
+
 # enable mouse support for switching panes/windows
 setw -g mouse on
+
+# Stay in copy mode on drag end.
+# (Would use `bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X
+# stop-selection` but it is a bit glitchy.)
+unbind-key -T copy-mode-vi MouseDragEnd1Pane
+
+# Scroll 3 lines at a time instead of default 5; don't extend dragged selections.
+bind-key -T copy-mode-vi WheelUpPane select-pane\; send-keys -t{mouse} -X clear-selection\; send-keys -t{mouse} -X -N 3 scroll-up
+bind-key -T copy-mode-vi WheelDownPane select-pane\; send-keys -t{mouse} -X clear-selection\; send-keys -t{mouse} -X -N 3 scroll-down
+
+# Make double and triple click work outside of copy mode (already works inside it with default bindings).
+bind-key -T root DoubleClick1Pane if-shell -Ft{mouse} '#{alternate_on}' "send-keys -M" "copy-mode -t{mouse}; send-keys -t{mouse} -X select-word"
+bind-key -T root TripleClick1Pane if-shell -Ft{mouse} '#{alternate_on}' "send-keys -M" "copy-mode -t{mouse}; send-keys -t{mouse} -X select-line"
 
 # set vi mode for copy mode
 setw -g mode-keys vi
@@ -95,9 +121,18 @@ bind -Tcopy-mode-vi 'y' send -X copy-pipe-and-cancel "tmux save-buffer - | reatt
 bind C-c run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
 bind C-v run "tmux set-buffer $(reattach-to-user-namespace pbpaste); tmux paste-buffer"
 
+# For those times when C-c and q are not enough.
+bind-key -T copy-mode-vi Escape send-keys -X cancel
+
+bind-key -T copy-mode-vi / command-prompt -i -p "search down" "send -X search-forward-incremental \"%%%\""
+bind-key -T copy-mode-vi ? command-prompt -i -p "search up" "send -X search-backward-incremental \"%%%\""
+
+# Dont wrap searches
+set -w -g wrap-search off
+
+
 ##############################
-### Color & Style Settings ###
-##############################
+### Color & Style Settings
 
 source ~/.dotfiles/tmux/theme.sh
 
