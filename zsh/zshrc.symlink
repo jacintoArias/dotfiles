@@ -8,13 +8,14 @@ export ZSH=/Users/jarias/.oh-my-zsh
 for config ($ZSH_FILES/**/*.zsh) source $config
 
 # Color Scheme
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+color tomorrow-night
+#BASE16_SHELL=$HOME/.config/base16-shell/
+#[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
 DEFAULT_USER="jarias"
 
 # OhMYZSH options
-plugins=(aws brew docker git git-flow ng node npm osx python \
+plugins=(brew docker git git-flow ng node npm osx python \
          sbt scw scala tmux vi-mode z zsh-syntax-highlighting) 
 
 source $ZSH/oh-my-zsh.sh
@@ -41,5 +42,11 @@ bindkey -a "^[[3~" delete-char
 export EDITOR='nvim'
 export GIT_EDITOR='nvim'
 
+# Fuzzy finder confiuration
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='ag -g ""'
+
+# Until plugin is fixed
+source /usr/local/bin/aws_zsh_completer.sh
+
+
