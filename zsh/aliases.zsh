@@ -4,7 +4,9 @@
 alias reload='RELOAD=1 source ~/.zshrc'
 
 # Renames
-alias vim=nvim
+if command -v nvim &> /dev/null; then
+  alias vim=nvim # Use `\vim` or `command vim` to get the real vim.
+fi
 
 # Filesystem aliases
 alias ..='cd ..'
@@ -28,6 +30,10 @@ alias treel="tree -L 1"
 alias treell="tree -L 2"
 alias treelll="tree -L 3"
 alias treellll="tree -L 4"
+
+# Tools shortcut
+alias prettyjson='python -m json.tool'
+alias eject='diskutil unmountDisk'
 
 # Scripts
 alias dropboxsync="python ~/dev/bin/scripts/dropboxsync.py"

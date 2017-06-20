@@ -2,9 +2,11 @@ source ~/.config/nvim/plugins.vim
 
 " Section General {{{
 
-set nocompatible 	    " Use vim settings, rather then vi settings
-set autoread            " detect when a file is changed
+set nocompatible   " Use vim settings, rather then vi settings
+set autoread       " detect when a file is changed
 
+filetype indent plugin on
+syntax on
 
 " }}}
 
@@ -12,7 +14,6 @@ set autoread            " detect when a file is changed
 
 " Themes and colors
 
-syntax on
 if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
   source ~/.vimrc_background
@@ -24,6 +25,9 @@ highlight htmlArg cterm=italic
 highlight xmlAttrib cterm=italic
 highlight Normal ctermbg=none
 
+set highlight+=N:DiffText             " make current line number stand out a little
+"set highlight+=c:LineNr               " blend vertical separators with line numbers
+
 " Vim airline
 let g:airline_powerline_fonts = 1
 let g:airline_theme='onedark'
@@ -31,6 +35,39 @@ let g:airline_theme='onedark'
 set laststatus=2
 
 "}}}
+
+" Editor behaviour {{{
+
+" Aux files
+if exists('$SUDO_USER')
+  set nobackup                                  " don't create root-owned files
+  set nowritebackup                             " don't create root-owned files
+else
+  set backupdir+=~/.config/nvim/tmp/backup      " keep backup files out of the way
+endif
+
+if exists('$SUDO_USER')
+  set noswapfile                                " don't create root-owned files
+else
+  set directory+=~/.config/nvim/tmp/swap//      " keep swap files out of the way
+endif
+
+if has('persistent_undo')
+  if exists('$SUDO_USER')
+    set noundofile                              " don't create root-owned files
+  else
+    set undodir+=~/.config/nvim/tmp/undo        " keep undo files out of the way
+    set undofile                                " actually use undo files
+  endif
+endif
+
+set updatecount=80                    " update swapfiles every 80 typed chars
+set updatetime=2000                   " same as YCM
+
+" Buffers
+set hidden   " allows you to hide buffers with unsaved changes
+
+" }}}
 
 " Section Editor UI {{{
 
@@ -71,8 +108,20 @@ endif
 set wildmenu
 set wildmode=list:longest,full
 
+" Meta
+set shortmess+=I                      " no splash screen
+
 " Scroll
 set scrolloff=5 " Always lead with n lines
+
+" Splits
+if has('windows')
+  set splitbelow                      " open horizontal splits below current window
+endif
+
+if has('vertsplit')
+  set splitright                      " open vertical splits to the right of the current window
+endif
 
 " Tabs
 set tabstop=4
@@ -86,7 +135,7 @@ set listchars=tab:▸\ ,eol:¬
 
 " Wrap
 set nowrap
-set textwidth=79
+set textwidth=80
 set formatoptions=qrn1
 set colorcolumn=85
 execute "set colorcolumn=" . join(range(100,335), ',')
