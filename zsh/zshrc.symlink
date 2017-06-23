@@ -4,13 +4,16 @@ export ZSH_FILES=$DOTFILES/zsh
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/jarias/.oh-my-zsh
 
+# adding path directory for custom scripts
+export PATH=$DOTFILES/bin:$PATH
+
 # source all .zsh files inside of the zsh/ directory
 for config ($ZSH_FILES/**/*.zsh) source $config
 
 # Color Scheme
 color tomorrow-night
 #BASE16_SHELL=$HOME/.config/base16-shell/
-#[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
 DEFAULT_USER="jarias"
 

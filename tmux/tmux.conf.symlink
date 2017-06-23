@@ -2,6 +2,8 @@
 ######################
 # General Config
 
+set -g default-command "reattach-to-user-namespace -l zsh"
+
 # tmux display things in 256 colors
 set -g default-terminal "tmux-256color-italic"
 #  enable terminal compability
@@ -85,7 +87,10 @@ bind -r Down resize-pane -D 10
 bind -r Up resize-pane -U 10
 bind -r Right resize-pane -R 1
 
-# Rename window
+# Reorder and insert windows
+bind C command-prompt -p 'Insert window at:' 'new-window -a -t %1; swap-window -t -1'
+
+# Rename window using current folder
 bind-key < run -b 'tmux rename-window "`basename \"#{pane_current_path}\"`"'
 
 ######################
