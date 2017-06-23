@@ -8,6 +8,8 @@ set autoread       " detect when a file is changed
 filetype indent plugin on
 syntax on
 
+set clipboard:unnamed
+
 " }}}
 
 " Section Theme and colors {{{
@@ -23,7 +25,12 @@ endif
 highlight Comment cterm=italic
 highlight htmlArg cterm=italic
 highlight xmlAttrib cterm=italic
-highlight Normal ctermbg=none
+
+highlight Search ctermfg=black
+" Fix until https://github.com/chriskempson/base16-vim/issues/125
+highlight Error ctermfg=white
+
+
 
 set highlight+=N:DiffText             " make current line number stand out a little
 "set highlight+=c:LineNr               " blend vertical separators with line numbers
