@@ -20,11 +20,13 @@ set -g pane-active-border-fg 8
 # Status bar.
 set -g status-style 'bg=#373b41,fg=white,bold,italics'
 
+tm_separator="#[fg=white,bold] | "
+
 tm_host="#[fg=yellow,bold]${USER}@#h"
-tm_date="#[fg=magenta,bold] %d %b %R  "
-tm_session_name="  #[fg=yellow,noitalics]$tm_icon #S #[fg=yellow]$tm_separator_right  "
+tm_date="#[fg=magenta,bold]%d %b %R"
+tm_session_name="#[fg=yellow,noitalics]$tm_icon #S #[fg=yellow]$tm_separator_right"
 
-tm_battery="#(~/.dotfiles/bin/battery_indicator.sh)  "
+tm_battery="#(~/.dotfiles/bin/battery_indicator.sh)"
 
-set -g status-left $tm_session_name 
-set -g status-right $tm_host' '$tm_date' '$tm_battery
+set -g status-left ' '$tm_session_name' ' 
+set -g status-right $tm_host''$tm_separator''$tm_date''$tm_separator''$tm_battery' '

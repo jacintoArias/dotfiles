@@ -1,7 +1,6 @@
 #!/bin/bash
 # modified from http://ficate.com/blog/2012/10/15/battery-life-in-the-land-of-tmux/
 
-HEART='♥ '
 BOLT=' '
 BATTERY_FULL=' '
 BATTERY_THREE=' '
@@ -29,32 +28,28 @@ if [[ $charging == "Yes" ]]; then
     echo -n "$BOLT"
 fi
 battery_percentage=$(echo "((($current_charge/$total_charge)*100))" | bc -l | cut -d '.' -f 1)
-battery_percentage=19
-battery_slots=$(echo "(($battery_percentage/20))" | bc -l )
+battery_slots=$(echo "(($battery_percentage/20+1))" | bc -l | cut -d '.' -f 1)
 
-echo -n $battery_percentage " "
-echo -n $battery_slots
 case $battery_slots in
 1)
+    echo -n '#[fg=red]'
     echo -n "$BATTERY_EMPTY"
 ;;
 2)
+    echo -n "$BATTERY_QUARTER"
+;;
+3)
     echo -n "$BATTERY_HALF"
 ;;
-3)  
+4)  
     echo -n "$BATTERY_THREE"
 ;;
-[45])
+[56])
     echo -n "$BATTERY_FULL"
 ;;
 *)
     echo -n "?"
 esac
 
-#for i in `seq 1 $charged_slots`; do echo -n "$HEART"; done
-
-if [[ $charged_slots -lt 3 ]]; then
-  echo -n '#[fg=red]'
-  for i in `seq 1 $(echo "3-$charged_slots" | bc)`; do echo -n "$HEART"; done
-fi
+echo -n $battery_percentage"%"
 
