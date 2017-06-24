@@ -30,7 +30,9 @@ highlight Search ctermfg=black
 " Fix until https://github.com/chriskempson/base16-vim/issues/125
 highlight Error ctermfg=white
 
-
+" Tabs and other special chars
+highlight SpecialKey ctermbg=none ctermfg=19
+highlight NonText ctermbg=none ctermfg=19
 
 set highlight+=N:DiffText             " make current line number stand out a little
 "set highlight+=c:LineNr               " blend vertical separators with line numbers
@@ -138,7 +140,7 @@ set expandtab
 
 " Whitespace
 set list
-set listchars=tab:▸\ ,eol:¬
+set listchars=tab:▸\ ,eol:¬,trail:·
 
 " Wrap
 set nowrap
