@@ -37,6 +37,9 @@ alias treellll="tree -L 4"
 alias prettyjson='python -m json.tool'
 alias eject='diskutil unmountDisk'
 
+# Functions
+alias getAWSDNS="$DOTFILES/zsh/functions/getAWSDNS.sh"
+
 # Scripts
 alias dropboxsync="python ~/dev/bin/scripts/dropboxsync.py"
 alias matlab="/Applications/MATLAB_R2012a.app/bin/scripts/matlab -nojvm -nodisplay -nosplash -nodesktop"
