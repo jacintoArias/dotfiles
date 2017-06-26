@@ -1,12 +1,12 @@
 #!/bin/bash
 # modified from http://ficate.com/blog/2012/10/15/battery-life-in-the-land-of-tmux/
 
-BOLT=' '
-BATTERY_FULL=' '
-BATTERY_THREE=' '
-BATTERY_HALF=' '
-BATTERY_QUARTER=' '
-BATTERY_EMPTY=' '
+BOLT=''
+BATTERY_FULL=''
+BATTERY_THREE=''
+BATTERY_HALF=''
+BATTERY_QUARTER=''
+BATTERY_EMPTY=''
 
 if [[ `uname` == 'Linux' ]]; then
   current_charge=$(cat /proc/acpi/battery/BAT1/state | grep 'remaining capacity' | awk '{print $3}')
@@ -23,16 +23,19 @@ if [[ $charged_slots -gt 5 ]]; then
   charged_slots=5
 fi
 
-echo -n '#[fg=magenta]'
-if [[ $charging == "Yes" ]]; then
-    echo -n "$BOLT"
-fi
 battery_percentage=$(echo "((($current_charge/$total_charge)*100))" | bc -l | cut -d '.' -f 1)
 battery_slots=$(echo "(($battery_percentage/20+1))" | bc -l | cut -d '.' -f 1)
 
+if [[ $battery_slots -eq 1 ]]; then
+    echo -n '#[fg=red]'
+else
+    echo -n '#[fg=magenta]'
+fi
+
+echo -n $battery_percentage"% "
+
 case $battery_slots in
 1)
-    echo -n '#[fg=red]'
     echo -n "$BATTERY_EMPTY"
 ;;
 2)
@@ -51,5 +54,6 @@ case $battery_slots in
     echo -n "?"
 esac
 
-echo -n $battery_percentage"%"
-
+if [[ $charging == "Yes" ]]; then
+    echo -n " $BOLT"
+fi

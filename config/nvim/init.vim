@@ -80,7 +80,7 @@ set hidden   " allows you to hide buffers with unsaved changes
 
 " Section Editor UI {{{
 
-" Braces
+" Brackets
 set showmatch
 set mat=2
 
@@ -114,6 +114,7 @@ if has('mouse')
 endif
 
 " Menu
+set noshowmode
 set wildmenu
 set wildmode=list:longest,full
 

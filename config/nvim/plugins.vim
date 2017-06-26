@@ -16,24 +16,24 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
 
-" colorschemes
+" Colorschemes
 Plug 'chriskempson/base16-vim'
 
-" UI
+" Light statusline
 Plug 'vim-airline/vim-airline' " fancy statusline
 Plug 'vim-airline/vim-airline-themes' " themes for vim-airline
 
-" Utilities
-
-" File Drawer
+" File Drawer NERDTree
 Plug 'scrooloose/nerdtree' 
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'octref/RootIgnore'
 
-" Fuzzy finder
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+" Utilities
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }   " Fuzzy finder options
+Plug 'junegunn/fzf.vim'             " Fuzzy Finder
+Plug 'jiangmiao/auto-pairs'         " Auto close pairs
+Plug 'tpope/vim-commentary'         " Auto comments
 
 call plug#end()
