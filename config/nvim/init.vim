@@ -31,8 +31,8 @@ highlight Search ctermfg=black
 highlight Error ctermfg=white
 
 " Tabs and other special chars
-highlight SpecialKey ctermbg=none ctermfg=19
-highlight NonText ctermbg=none ctermfg=19
+highlight SpecialKey ctermbg=none ctermfg=241
+highlight NonText ctermbg=none ctermfg=241
 
 set highlight+=N:DiffText             " make current line number stand out a little
 "set highlight+=c:LineNr               " blend vertical separators with line numbers
