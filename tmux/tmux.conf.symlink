@@ -23,6 +23,11 @@ setw -g aggressive-resize on
 set -g base-index 1
 setw -g pane-base-index 1
 
+# Rename window as current dir
+set -g window-status-format '#I:#(pwd="#{pane_current_path}"; echo ${pwd####*/})#F'
+set -g window-status-current-format '#I:#(pwd="#{pane_current_path}"; echo ${pwd####*/})#F'
+set-option -g status-interval 1
+
 # Window titles
 set-option -g set-titles on
 set-option -g set-titles-string "#T - #W"
@@ -89,9 +94,6 @@ bind -r Right resize-pane -R 1
 
 # Reorder and insert windows
 bind C command-prompt -p 'Insert window at:' 'new-window -a -t %1; swap-window -t -1'
-
-# Rename window using current folder
-bind-key < run -b 'tmux rename-window "`basename \"#{pane_current_path}\"`"'
 
 ######################
 # Mouse and copy mode support
