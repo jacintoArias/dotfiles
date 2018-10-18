@@ -14,7 +14,7 @@ if !filereadable(plugpath)
     endif
 endif
 
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin('~/.vim/plugged')
 
 " Colorschemes
 Plug 'chriskempson/base16-vim'
@@ -31,7 +31,7 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'octref/RootIgnore'
 
 " Syntax checker
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 
 " Autocomplete
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -48,16 +48,7 @@ Plug 'tpope/vim-repeat'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-sleuth' " Autodetect indent
 
-" Angular2
-Plug 'leafgarland/typescript-vim'
-Plug 'Quramy/vim-js-pretty-template'
-Plug 'jason0x43/vim-js-indent'
-
-" HTML
-Plug 'mattn/emmet-vim'
-Plug 'gregsexton/MatchTag'
-Plug 'othree/html5.vim'
-
 " Tmux easy navigation
 Plug 'christoomey/vim-tmux-navigator'
+
 call plug#end()

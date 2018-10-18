@@ -20,13 +20,17 @@ color tomorrow-night
 #BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
+
 DEFAULT_USER="jarias"
+
 
 # OhMYZSH options
 plugins=(brew docker git git-flow ng node npm osx python \
          sbt scw scala tmux vi-mode z zsh-syntax-highlighting) 
 
+
 source $ZSH/oh-my-zsh.sh
+
 
 # Fix Autocomplete
 # start typing + [Up-Arrow] - fuzzy find history forward
@@ -42,21 +46,24 @@ if [[ "${terminfo[kcud1]}" != "" ]]; then
   bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
 fi
 
+
 # Fix Backspace mapping in vim mode
 bindkey "^[[3~" delete-char
 bindkey -a "^[[3~" delete-char
+
 
 # User configuration
 export EDITOR='vim'
 export GIT_EDITOR='vim'
 
-# Fuzzy finder confiuration
+
+# Fuzzy finder configuration
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='ag -g ""'
 
+
 # Until plugin is fixed
 source /usr/local/bin/aws_zsh_completer.sh
-
 
 
 # tabtab source for serverless package

@@ -1,4 +1,4 @@
-source ~/.config/nvim/plugins.vim
+source ~/.vim/plugins.vim
 
 " Section General {{{
 

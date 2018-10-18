@@ -1,0 +1,71 @@
+{
+  "editor.cursorBlinking": "smooth",
+  "editor.fontFamily": "Hasklig",
+  "editor.fontSize": 14,
+  "editor.fontLigatures": true,
+  "editor.fontWeight": "400",
+  "editor.lineNumbers": "relative",
+  "editor.minimap.enabled": false,
+  "editor.quickSuggestions": true,
+  "editor.tabCompletion": true,
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+  "explorer.openEditors.visible": 1,
+  "terminal.integrated.fontFamily": "'SauceCodePro Nerd Font'",
+  "terminal.integrated.fontSize": 13,
+  "window.openFoldersInNewWindow": "on",
+  "workbench.iconTheme": "vscode-icons",
+  "workbench.startupEditor": "none",
+  //
+  //Extensions
+  //
+  // Prettier
+  "prettier.singleQuote": true,
+  "prettier.useTabs": false,
+  "prettier.tabWidth": 2,
+  "prettier.printWidth": 80,
+  "prettier.trailingComma": "es5",
+  // "[javascript]": {
+  "editor.formatOnSave": true,
+  // },
+  "[html]": {
+    "editor.formatOnSave": true
+  },
+  //
+  // Latex workshop
+  "latex-workshop.message.warning.show": false,
+  "latex-workshop.message.error.show": false,
+  "[latex]": {
+    // "editor.formatOnSave": false,
+    "editor.wordWrap": "on"
+  },
+  //
+  // Spell check
+  "cSpell.language": "es,en-GB",
+  //
+  // vsIcons
+  "vsicons.dontShowNewVersionMessage": true,
+  "vsicons.projectDetection.autoReload": true,
+  //
+  // vsVim
+  "vim.overrideCopy": true,
+  "vim.leader": ",",
+  "vim.useSystemClipboard": true,
+  "window.zoomLevel": 0,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  //
+  // Spotify
+  "spotify.showNextButton": false,
+  "spotify.showPreviousButton": false,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "workbench.colorTheme": "Visual Studio Dark",
+  "cSpell.enabledLanguageIds": [
+    "asciidoc",
+    "latex",
+    "markdown",
+    "plaintext",
+    "text"
+  ],
+  "explorer.confirmDragAndDrop": false
+}

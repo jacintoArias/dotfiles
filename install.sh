@@ -1,35 +1,38 @@
 #!/usr/bin/env bash
+set -e
 
-command_exists() {
-    type "$1" > /dev/null 2>&1
-}
-
-echo "Installing dotfiles."
-echo "=============================="
-
-echo "Initializing submodule(s)"
-echo "=============================="
-git submodule update --init --recursive
-
-source setup/link.sh
-
-: <<'END'
-# only perform macOS-specific install
+# only perform macos-specific install
 if [ "$(uname)" == "Darwin" ]; then
-    echo -e "\n\nRunning on OSX"
-
-    source setup/brew.sh
-
-    source setup/osx.sh
-fi
-
-echo "creating vim directories"
-mkdir -p ~/.vim-tmp
-
-if ! [[ $SHELL =~ .*zsh.* ]]; then
-    echo "Installing oh my zsh"
-    sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+  echo -e "\n\nRunning on OSX"
+  echo "=============================="
+  source setup/brew.sh
+  source setup/osx.sh
 else
-    echo "Oh my zsh is already installed"
+  # only perform Linux-specific install
+  echo -e "\n\nRunning on Linux" 
+  echo "=============================="
+  source setup/apt.sh
 fi
-END
+
+echo -e "\n\nInstalling base16"
+echo "=============================="
+if [ ! -d "~/.config/base16-shell" ]; then
+  sh -c "git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell"
+else
+  echo "base16 is already installed"
+fi
+
+
+echo -e "\n\nInstalling oh my zsh"
+echo "=============================="
+if ! [[ $SHELL =~ .*zsh.* ]]; then
+  sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+  sh -c "git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k"
+else
+  echo "Oh my zsh is already installed"
+fi
+
+source ./setup/backup.sh
+source ./setup/link.sh
+
+echo -e "\n\n"

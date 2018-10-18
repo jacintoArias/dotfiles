@@ -1,0 +1,1 @@
+apt-get install curl tmux vim zsh wget
