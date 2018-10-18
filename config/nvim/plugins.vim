@@ -24,16 +24,40 @@ Plug 'vim-airline/vim-airline' " fancy statusline
 Plug 'vim-airline/vim-airline-themes' " themes for vim-airline
 
 " File Drawer NERDTree
-Plug 'scrooloose/nerdtree' 
+Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'octref/RootIgnore'
+
+" Syntax checker
+Plug 'w0rp/ale'
+
+" Autocomplete
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'ervandew/supertab'
+" Plug 'zchee/deoplete-jedi'
 
 " Utilities
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }   " Fuzzy finder options
 Plug 'junegunn/fzf.vim'             " Fuzzy Finder
 Plug 'jiangmiao/auto-pairs'         " Auto close pairs
 Plug 'tpope/vim-commentary'         " Auto comments
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'tpope/vim-sleuth' " Autodetect indent
 
+" Angular2
+Plug 'leafgarland/typescript-vim'
+Plug 'Quramy/vim-js-pretty-template'
+Plug 'jason0x43/vim-js-indent'
+
+" HTML
+Plug 'mattn/emmet-vim'
+Plug 'gregsexton/MatchTag'
+Plug 'othree/html5.vim'
+
+" Tmux easy navigation
+Plug 'christoomey/vim-tmux-navigator'
 call plug#end()

@@ -29,4 +29,4 @@ tm_session_name="#[fg=yellow,noitalics]$tm_icon #S #[fg=yellow]$tm_separator_rig
 tm_battery="#(~/.dotfiles/bin/battery_indicator.sh)"
 
 set -g status-left ' '$tm_session_name' ' 
-set -g status-right $tm_host''$tm_separator''$tm_date''$tm_separator''$tm_battery' '
+set -g status-right $tm_host''$tm_separator''$tm_date''$tm_separator''$tm_battery'  '

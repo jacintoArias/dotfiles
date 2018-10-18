@@ -1,6 +1,6 @@
 # This is Git's per-user configuration file.
 [core]
-    editor = vim
+	editor = vim
     excludesfile = ~/.gitignore_global
 [color]
     diff = auto

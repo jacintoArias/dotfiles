@@ -29,6 +29,8 @@ highlight xmlAttrib cterm=italic
 highlight Search ctermfg=black
 " Fix until https://github.com/chriskempson/base16-vim/issues/125
 highlight Error ctermfg=white
+highlight Error ctermbg=red
+highlight MatchParen ctermbg=blue ctermfg=white guibg=NONE guifg=#00ff00 cterm=BOLD gui=BOLD
 
 " Tabs and other special chars
 highlight SpecialKey ctermbg=none ctermfg=241
@@ -39,9 +41,11 @@ set highlight+=N:DiffText             " make current line number stand out a lit
 
 " Vim airline
 let g:airline_powerline_fonts = 1
-let g:airline_theme='onedark'
+let g:airline_theme='base16'
 " Always show statusline
 set laststatus=2
+
+let g:airline#extensions#ale#enabled = 1
 
 "}}}
 
@@ -75,6 +79,11 @@ set updatetime=2000                   " same as YCM
 
 " Buffers
 set hidden   " allows you to hide buffers with unsaved changes
+" Open quickfix in verticsl
+autocmd filetype qf wincmd J
+
+" Reload modified files
+set autoread
 
 " }}}
 
@@ -126,11 +135,11 @@ set scrolloff=5 " Always lead with n lines
 
 " Splits
 if has('windows')
-  set splitbelow                      " open horizontal splits below current window
+  set splitbelow " open horizontal splits below current window
 endif
 
 if has('vertsplit')
-  set splitright                      " open vertical splits to the right of the current window
+  set splitright    " open vertical splits to the right of the current window
 endif
 
 " Tabs
@@ -147,8 +156,8 @@ set listchars=tab:▸\ ,eol:¬,trail:·
 set nowrap
 set textwidth=80
 set formatoptions=qrn1
-set colorcolumn=85
-execute "set colorcolumn=" . join(range(100,335), ',')
+"set colorcolumn=80
+execute "set colorcolumn=" . join(range(80,335), ',')
 
 " }}}
 
@@ -187,6 +196,7 @@ nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
 nnoremap <right> <nop>
+" (comment for not that hard)
 "inoremap <up> <nop>
 "inoremap <down> <nop>
 "inoremap <left> <nop>
@@ -206,7 +216,10 @@ nmap <silent> <leader>y :NERDTreeFind<cr>
 "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Close vim if only has nerdtree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 let loaded_netrwPlugin=1           
 let NERDTreeShowHidden=1
@@ -227,6 +240,29 @@ nmap <silent> <leader>f :FZF<cr>
 let g:fzf_nvim_statusline = 0
 let g:fzf_layout = { 'down': '~25%' }
 
+" ale
+let g:ale_sign_error = '=>'
+let g:ale_sign_warning = '->'
+
+" Not until integrated with tsuquyomi
+let g:ale_set_quickfix = 1
+let g:ale_lint_on_text_changed = 'never'
+
+
+let g:ale_linters = {
+\   'python': ['flake8', 'pylint'],
+\}
+
+" Typescript js string templates
+autocmd FileType typescript JsPreTmpl html
+autocmd FileType typescript syn clear foldBraces 
+
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+
+" Emmet
+autocmd FileType html,css,js,ts EmmetInstall
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0

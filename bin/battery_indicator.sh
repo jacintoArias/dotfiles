@@ -55,5 +55,5 @@ case $battery_slots in
 esac
 
 if [[ $charging == "Yes" ]]; then
-    echo -n " $BOLT"
+    echo -n "  $BOLT"
 fi

@@ -4,10 +4,11 @@
 alias reload='RELOAD=1 source ~/.zshrc'
 
 # Renames
-if command -v nvim &> /dev/null; then
-  alias vim=nvim # Use `\vim` or `command vim` to get the real vim.
-fi
+# if command -v nvim &> /dev/null; then
+#   alias vim=nvim # Use `\vim` or `command vim` to get the real vim.
+# fi
 
+alias nvim=vim # Use `\vim` or `command vim` to get the real vim.
 # Filesystem aliases
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -51,6 +52,9 @@ alias compileWeb="python ~/dev/bin/scripts/compileWeb.py"
 alias tunnelBS="~/dev/bin/scripts/tunnelBS.sh"
 alias gcc-4.2="gcc"
 alias vijupyter=". ~/dev/bin/scripts/vijupyter.sh"
+alias vjupyter=". ~/dev/bin/vjupyter/activate.sh"
 alias vipython=". ~/dev/bin/scripts/vipython.sh"
 alias cleanup-docker="~/dev/bin/scripts/cleanup-docker.sh"
+
+
 
