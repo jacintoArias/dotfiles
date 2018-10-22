@@ -14,7 +14,7 @@
   "terminal.integrated.fontFamily": "'SauceCodePro Nerd Font'",
   "terminal.integrated.fontSize": 13,
   "window.openFoldersInNewWindow": "on",
-  "workbench.iconTheme": "vscode-icons",
+  "workbench.iconTheme": "material-icon-theme",
   "workbench.startupEditor": "none",
   //
   //Extensions

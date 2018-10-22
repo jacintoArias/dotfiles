@@ -21,7 +21,7 @@ done
 echo -e "\n\nCreating vscode symlinks"
 echo "=============================="
 
-VSCODE=$HOME/Library/Application\ Support/Code/User
+VSCODE="$HOME/Library/Application Support/Code/User"
 vscodefiles="settings.json keybindings.json snippets"
 
 for filename in $vscodefiles; do
@@ -31,7 +31,7 @@ for filename in $vscodefiles; do
     echo "$target already exists... Skipping."
   else
     echo "Creating symlink for $filename"
-    ln -s $target $VSCODE
+    echo ln -s $file "$VSCODE"
   fi
 done
 

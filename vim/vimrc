@@ -45,34 +45,9 @@ let g:airline_theme='base16'
 " Always show statusline
 set laststatus=2
 
-let g:airline#extensions#ale#enabled = 1
-
 "}}}
 
 " Editor behaviour {{{
-
-" Aux files
-if exists('$SUDO_USER')
-  set nobackup                                  " don't create root-owned files
-  set nowritebackup                             " don't create root-owned files
-else
-  set backupdir+=~/.config/nvim/tmp/backup      " keep backup files out of the way
-endif
-
-if exists('$SUDO_USER')
-  set noswapfile                                " don't create root-owned files
-else
-  set directory+=~/.config/nvim/tmp/swap//      " keep swap files out of the way
-endif
-
-if has('persistent_undo')
-  if exists('$SUDO_USER')
-    set noundofile                              " don't create root-owned files
-  else
-    set undodir+=~/.config/nvim/tmp/undo        " keep undo files out of the way
-    set undofile                                " actually use undo files
-  endif
-endif
 
 set updatecount=80                    " update swapfiles every 80 typed chars
 set updatetime=2000                   " same as YCM

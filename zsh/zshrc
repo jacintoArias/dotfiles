@@ -17,7 +17,7 @@ for config ($ZSH_FILES/**/*.zsh) source $config
 
 # Color Scheme
 color tomorrow-night
-#BASE16_SHELL=$HOME/.config/base16-shell/
+BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
 
@@ -60,15 +60,3 @@ export GIT_EDITOR='vim'
 # Fuzzy finder configuration
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='ag -g ""'
-
-
-# Until plugin is fixed
-source /usr/local/bin/aws_zsh_completer.sh
-
-
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /Users/jarias/demosense/dev/pipeline/demosense-api-admin/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/jarias/demosense/dev/pipeline/demosense-api-admin/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /Users/jarias/demosense/dev/pipeline/demosense-api-admin/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/jarias/demosense/dev/pipeline/demosense-api-admin/node_modules/tabtab/.completions/sls.zsh
