@@ -21,11 +21,11 @@ chflags nohidden ~/Library
 # echo "disable resume system wide"
 # defaults write NSGlobalDomainNSQuitAlwaysKeepWindows -bool false
 
-echo "Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)"
-defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+# echo "Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)"
+# defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
-echo "Enable subpixel font rendering on non-Apple LCDs"
-defaults write NSGlobalDomain AppleFontSmoothing -int 2
+# echo "Enable subpixel font rendering on non-Apple LCDs"
+# defaults write NSGlobalDomain AppleFontSmoothing -int 2
 
 # echo "Enable the 2D Dock"
 # defaults write com.apple.dock no-glass -bool true
@@ -53,10 +53,10 @@ defaults write NSGlobalDomain AppleFontSmoothing -int 2
 #defaults write com.apple.finder QuitMenuItem -bool true
 
 # Disable window animations and Get Info animations in Finder
-macosfaults write com.apple.finder DisableAllAnimations -bool true
+# macosfaults write com.apple.finder DisableAllAnimations -bool true
 
-echo "Use current directory as default search scope in Finder"
-defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+# echo "Use current directory as default search scope in Finder"
+# defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 
 echo "Show Path bar in Finder"
 defaults write com.apple.finder ShowPathbar -bool true

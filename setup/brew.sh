@@ -10,7 +10,7 @@ echo "=============================="
 
 formulas=(
     diff-so-fancy
-    'brew install git --without-completions'
+    'git --without-completions'
     'grep --with-default-names'
     fzf
     reattach-to-user-namespace
