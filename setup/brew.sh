@@ -12,10 +12,7 @@ formulas=(
     diff-so-fancy
     'brew install git --without-completions'
     'grep --with-default-names'
-    hub
     fzf
-    markdown
-    neovim/neovim/neovim
     reattach-to-user-namespace
     the_silver_searcher
     tmux

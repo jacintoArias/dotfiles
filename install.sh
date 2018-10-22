@@ -6,7 +6,7 @@ if [ "$(uname)" == "Darwin" ]; then
   echo -e "\n\nRunning on OSX"
   echo "=============================="
   source setup/brew.sh
-  source setup/osx.sh
+  # source setup/osx.sh
 else
   # only perform Linux-specific install
   echo -e "\n\nRunning on Linux" 
